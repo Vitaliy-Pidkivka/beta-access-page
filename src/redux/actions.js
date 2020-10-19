@@ -19,7 +19,7 @@ export const checkWord = newWord => async (dispatch) =>{
 		dispatch(setAlert('success','OK, let\'s go'))
 		setTimeout(() => {
 			dispatch(setBetaAuth())
-		}, 2500)
+		}, 1500)
 	} else{
 		dispatch(hideLoader())
 		dispatch(setAlert('error','You wrote a wrong word'))
