@@ -3,7 +3,7 @@ import '../styles/BetaAccessPage.scss'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkWord } from '../redux/actions'
+import { checkWord, setAlert } from '../redux/actions'
 import CustomAlert from './CustomAlert'
 import { getAlertMessage, getLoading } from '../redux/appReducer'
 import Loader from './Loader'
@@ -19,7 +19,7 @@ function BetaAccessPage() {
 	const onSubmitForm = (e) => {
 		e.preventDefault()
 		if(!initialState.word){
-
+			dispatch(setAlert('error', 'input can\'t be empty'))
 		}
 		else{
 			dispatch(checkWord(initialState.word))
