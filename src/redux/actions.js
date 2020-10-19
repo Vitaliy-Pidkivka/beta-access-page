@@ -10,19 +10,23 @@ export const hideAlert = () => ({type: HIDE_ALERT})
 
 export const checkWord = newWord => async (dispatch) =>{
 	dispatch(showLoader(true))
-	const words = await fetchWords()
-	const found = words.filter(word => word === newWord)
-	if (found.length) {
-		localStorage.setItem('isBetaAuth', 'true')
+	try {
+		const words = await fetchWords()
+		const found = words.filter(word => word === newWord)
+		if (found.length) {
+			localStorage.setItem('isBetaAuth', 'true')
+			dispatch(hideLoader())
+			dispatch(setAlert('success','OK, let\'s go'))
+			setTimeout(() => {
+				dispatch(setBetaAuth())
+			}, 1500)
+		} else{
+			dispatch(hideLoader())
+			dispatch(setAlert('error','You wrote a wrong word'))
+		}
+	} catch (e) {
 		dispatch(hideLoader())
-		dispatch(setAlert())
-		dispatch(setAlert('success','OK, let\'s go'))
-		setTimeout(() => {
-			dispatch(setBetaAuth())
-		}, 1500)
-	} else{
-		dispatch(hideLoader())
-		dispatch(setAlert('error','You wrote a wrong word'))
+		dispatch(setAlert('error','some problems with server'))
 	}
 }
 export const setAlert = (type, message) => async dispatch => {
