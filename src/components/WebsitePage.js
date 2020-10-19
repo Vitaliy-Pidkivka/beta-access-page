@@ -1,8 +1,11 @@
 import React from 'react'
+import '../styles/WebsitePage.scss'
 
-function WebsitePage(props) {
+function WebsitePage() {
 	return (
-		<div className={'websitePage'}> </div>
+		<div className={'websitePage'}>
+			<h1>This is a website page</h1>
+		</div>
 	)
 }
 
