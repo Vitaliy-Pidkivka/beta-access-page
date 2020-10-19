@@ -15,25 +15,21 @@ export const checkWord = newWord => async (dispatch) =>{
 	if (found.length) {
 		localStorage.setItem('isBetaAuth', 'true')
 		dispatch(hideLoader())
-		dispatch(showAlert({
-			type: 'success',
-			message: 'OK, let\'s go'
-		}))
+		dispatch(setAlert())
+		dispatch(showAlert('success','OK, let\'s go'))
 		setTimeout(() => {
 			dispatch(setBetaAuth())
-			dispatch(hideAlert())
-		}, 2000)
+		}, 2500)
 	} else{
 		dispatch(hideLoader())
-		dispatch(showAlert({
-			type: 'error',
-			message: 'You wrote a wrong word'
-		}))
-		setTimeout(() => {
-			dispatch(hideAlert())
-		},2500)
+		dispatch(setAlert('error','You wrote a wrong word'))
 	}
 }
-
+export const setAlert = (type, message) => async dispatch => {
+	dispatch(showAlert({type, message}))
+	setTimeout(() => {
+		dispatch(hideAlert())
+	}, 2500)
+}
 
 

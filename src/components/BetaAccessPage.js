@@ -18,8 +18,13 @@ function BetaAccessPage() {
 
 	const onSubmitForm = (e) => {
 		e.preventDefault()
-		dispatch(checkWord(initialState.word))
-		setInitialState({ word: '' })
+		if(!initialState.word){
+
+		}
+		else{
+			dispatch(checkWord(initialState.word))
+			setInitialState({ word: '' })
+		}
 	}
 
 	const onChangeInput = (e) => {
