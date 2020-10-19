@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import '../styles/BetaAccessPage.scss'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { checkWord } from '../reducers/actions'
+import CustomAlert from './CustomAlert'
+import { getAlertMessage, getLoading } from '../reducers/appReducer'
+import Loader from './Loader'
 
 function BetaAccessPage() {
 	const dispatch = useDispatch()
+	const alertMessage = useSelector(getAlertMessage)
+	const loading = useSelector(getLoading)
 	const [initialState, setInitialState] = useState({
 		word: ''
 	})
@@ -14,7 +19,7 @@ function BetaAccessPage() {
 	const onSubmitForm = (e) => {
 		e.preventDefault()
 		dispatch(checkWord(initialState.word))
-		setInitialState({word: ''})
+		setInitialState({ word: '' })
 	}
 
 	const onChangeInput = (e) => {
@@ -29,7 +34,8 @@ function BetaAccessPage() {
 		<div className={'betaAccessPage'}>
 			<h1>This is a beta access page</h1>
 			<h3>If you want to take beta version of the website write a right word (beta, website, test)</h3>
-			<form onSubmit={onSubmitForm}>
+			{loading && <Loader/>}
+			{!loading && <form onSubmit={onSubmitForm}>
 				<TextField
 					value={initialState.word}
 					onChange={onChangeInput}
@@ -44,7 +50,13 @@ function BetaAccessPage() {
 				>
 					Check word
 				</Button>
-			</form>
+			</form>}
+			{alertMessage && (
+				<CustomAlert
+					type={alertMessage.type}
+					text={alertMessage.message}
+				/>
+			)}
 		</div>
 	)
 }
