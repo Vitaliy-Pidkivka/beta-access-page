@@ -3,9 +3,9 @@ import '../styles/BetaAccessPage.scss'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkWord } from '../reducers/actions'
+import { checkWord } from '../redux/actions'
 import CustomAlert from './CustomAlert'
-import { getAlertMessage, getLoading } from '../reducers/appReducer'
+import { getAlertMessage, getLoading } from '../redux/appReducer'
 import Loader from './Loader'
 
 function BetaAccessPage() {

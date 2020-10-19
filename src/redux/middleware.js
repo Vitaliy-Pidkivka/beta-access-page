@@ -1,5 +1,5 @@
-import { setBetaAuth } from '../reducers/actions'
-import { FIRST_PAGE_LOAD } from '../reducers/types'
+import { setBetaAuth } from './actions'
+import { FIRST_PAGE_LOAD } from './types'
 
 export const checkAllowedWords = ({dispatch}) => next => action => {
 	if(action.type === FIRST_PAGE_LOAD){

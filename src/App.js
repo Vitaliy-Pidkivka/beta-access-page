@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import WebsitePage from './components/WebsitePage'
 import BetaAccessPage from './components/BetaAccessPage'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsBetaAuth } from './reducers/appReducer'
-import { firstPageLoad } from './reducers/actions'
+import { getIsBetaAuth } from './redux/appReducer'
+import { firstPageLoad } from './redux/actions'
 
 function App() {
 	const dispatch = useDispatch()
