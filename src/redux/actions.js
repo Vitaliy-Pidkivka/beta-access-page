@@ -16,7 +16,7 @@ export const checkWord = newWord => async (dispatch) =>{
 		localStorage.setItem('isBetaAuth', 'true')
 		dispatch(hideLoader())
 		dispatch(setAlert())
-		dispatch(showAlert('success','OK, let\'s go'))
+		dispatch(setAlert('success','OK, let\'s go'))
 		setTimeout(() => {
 			dispatch(setBetaAuth())
 		}, 2500)
